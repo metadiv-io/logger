@@ -12,26 +12,26 @@ const (
 )
 
 // Info logs the information should be logged
-func Info(systemID, apiUUID, traceID string, v ...any) {
+func Info(v ...any) {
 	stdLogger := getStdLogger()
 	fileLogger := getFileLogger(LOG_FOLDER_PATH, getLogFileName())
-	print(stdLogger, systemID, apiUUID, traceID, LOG_LEVEL_INFO, v...)
-	print(fileLogger, systemID, apiUUID, traceID, LOG_LEVEL_INFO, v...)
+	print(stdLogger, LOG_LEVEL_INFO, "", v...)
+	print(fileLogger, LOG_LEVEL_INFO, "", v...)
 }
 
 // Error logs the expected error
-func Error(systemID, apiUUID, traceID string, v ...any) {
+func Error(v ...any) {
 	stdLogger := getStdLogger()
 	fileLogger := getFileLogger(LOG_FOLDER_PATH, getLogFileName())
-	print(stdLogger, systemID, apiUUID, traceID, LOG_LEVEL_ERROR, v...)
-	print(fileLogger, systemID, apiUUID, traceID, LOG_LEVEL_ERROR, v...)
+	print(stdLogger, LOG_LEVEL_ERROR, "", v...)
+	print(fileLogger, LOG_LEVEL_ERROR, "", v...)
 }
 
 // Debug logs the debug information, should be disabled in production
-func Debug(systemID, apiUUID, traceID string, v ...any) {
+func Debug(v ...any) {
 	if env.String("GIN_MODE", "") == "release" {
 		return
 	}
 	stdLogger := getStdLogger()
-	print(stdLogger, systemID, apiUUID, traceID, LOG_LEVEL_DEBUG, v...)
+	print(stdLogger, LOG_LEVEL_DEBUG, "", v...)
 }

@@ -33,7 +33,7 @@ type loggerInterface interface {
 	Println(v ...any)
 }
 
-func print(logger loggerInterface, systemID, apiUUID, traceID string, level string, v ...any) {
-	logger.SetPrefix(fmt.Sprintf("[%s] (%s/%s@%s) ", level, systemID, apiUUID, traceID))
+func print(logger loggerInterface, level string, prefix string, v ...any) {
+	logger.SetPrefix(fmt.Sprintf("[%s] %s", level, prefix))
 	logger.Println(v...)
 }
